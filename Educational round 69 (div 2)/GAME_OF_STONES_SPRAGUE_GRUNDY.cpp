@@ -1,4 +1,4 @@
-   // Game of Stones - Solution 1 - Sprague Grundy Theorem
+   // Game of Stones - Solution 1 - Sprague Grundy Theorem (Practice)
 
     #include <bits/stdc++.h>
     using namespace std;
