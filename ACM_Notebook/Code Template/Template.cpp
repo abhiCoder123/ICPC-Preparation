@@ -93,7 +93,7 @@ vlong ext_gcd ( vlong A, vlong B, vlong *X, vlong *Y ){
     return r2;
 }
 
-inline vlong modInv ( vlong a, vlong m ) {
+inline vlong modInv_ext_gcd ( vlong a, vlong m ) {
     vlong x, y;
     ext_gcd( a, m, &x, &y );
     x %= m;
@@ -101,13 +101,20 @@ inline vlong modInv ( vlong a, vlong m ) {
     return x;
 }
 
+
 inline vlong bigmod ( vlong a, vlong p, vlong m ) {
+
+	// To compute (a^(b) % m)
     vlong res = 1 % m, x = a % m;
     while ( p ) {
         if ( p & 1 ) res = ( res * x ) % m;
         x = ( x * x ) % m; p >>= 1; /// For bigmod2 multiply here using mulmod
     }
     return res;
+}
+
+inline vlong modInv(vlong a , vlong m){
+	return bigmod(a,m-2,m);   // Fermat's Little Theorem
 }
 
 
