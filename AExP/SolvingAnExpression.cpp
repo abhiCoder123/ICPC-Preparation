@@ -2,16 +2,17 @@
 using namespace std;
 #define ll long long
 #define fast_cin ios_base::sync_with_stdio(false);cin.tie(NULL)
-
-bool primes[10000005];
-ll F[10000005];
-ll ans[10000005];
+#define MAX 5000005
+bool primes[MAX];
+int F[MAX];
+int ans[MAX];
 int main()
 {
 
 	fast_cin;
 	memset(primes,true,sizeof(primes));
-	for(ll i=2;i*i<=10000005;i++){
+	primes[0]=primes[1]=false;
+	for(ll i=2;i*i<=MAX;i++){
 		if(primes[i]){
 		for(ll p=i*i;p<10000005;p+=i){
 			primes[p]=false;
@@ -25,19 +26,19 @@ int main()
 			prime.insert(i);*/
 
 
-	for(ll i=1;i<10000005;i++){
-		for(ll j=i;j<10000005;j+=i)
+	for(ll i=1;i<MAX;i++){
+		for(ll j=i;j<MAX;j+=i)
 			F[j]++;
 	}
 
-	for(ll i=1;i<10000005;i++){
+	for(ll i=1;i<MAX;i++){
 		if(primes[F[i]])
 			ans[i]=1;
 		else ans[i]=0;
 	}	
 
 	ans[0]=0;
-	for(ll i=1;i<10000005;i++)
+	for(ll i=1;i<MAX;i++)
 		ans[i]=ans[i]+ans[i-1];
 	ll T,L,R;
 	cin>>T;
